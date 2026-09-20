@@ -197,6 +197,8 @@ formulario.addEventListener("submit", function(event) {
         productos = [];
     }
 
+    producto.id = Date.now();
+    
     productos.push(producto);
 
     localStorage.setItem("productos", JSON.stringify(productos));
