@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ver producto</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f5ff;
+            color: #172033;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .producto {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-top: 25px;
+        }
+
+        .precio {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 25px 0;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 14px 22px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .volver {
+            display: block;
+            margin-top: 25px;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📦 Producto</h1>
+    <p>Información del producto</p>
+</header>
+
+<main>
+
+    <div class="producto">
+
+        <h1 id="nombre"></h1>
+
+        <h2>📝 Descripción</h2>
+        <p id="descripcion"></p>
+
+        <h2>🎯 ¿Para qué sirve?</h2>
+        <p id="paraQueSirve"></p>
+
+        <h2>📚 ¿Qué incluye?</h2>
+        <p id="incluye"></p>
+
+        <div class="precio" id="precio"></div>
+
+        <a id="comprar" class="boton">
+            🛒 Comprar ahora
+        </a>
+
+        <a href="productos.html" class="volver">
+            ← Volver a mis productos
+        </a>
+
+    </div>
+
+</main>
+
+<script>
+
+const parametros = new URLSearchParams(window.location.search);
+const id = parametros.get("id");
+
+const productos = JSON.parse(
+    localStorage.getItem("productos") || "[]"
+);
+
+const producto = productos.find(function(p) {
+    return String(p.id) === String(id);
+});
+
+if (producto) {
+
+    document.getElementById("nombre").textContent = producto.nombre;
+
+    document.getElementById("descripcion").textContent =
+        producto.descripcion;
+
+    document.getElementById("paraQueSirve").textContent =
+        producto.paraQueSirve;
+
+    document.getElementById("incluye").textContent =
+        producto.incluye;
+
+    document.getElementById("precio").textContent =
+        "$" + producto.precio;
+
+    document.getElementById("comprar").href =
+        "compra.html?producto=" +
+        encodeURIComponent(producto.nombre);
+
+} else {
+
+    document.querySelector(".producto").innerHTML = `
+        <h2>❌ Producto no encontrado</h2>
+        <p>Este producto no existe o ya no está disponible.</p>
+
+        <a href="productos.html" class="volver">
+            ← Volver a mis productos
+        </a>
+    `;
+}
+
+</script>
+
+</body>
+</html>
