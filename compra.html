@@ -70,15 +70,34 @@ Continuar compra
 <script>
 
 const datos = new URLSearchParams(window.location.search);
+const nombreProducto = datos.get("producto");
 
-document.getElementById("nombre").innerHTML =
-datos.get("producto");
+const productos = JSON.parse(
+    localStorage.getItem("productos") || "[]"
+);
 
-document.getElementById("precio").innerHTML =
-"Precio: $" + datos.get("precio");
+const producto = productos.find(function(p) {
+    return p.nombre === nombreProducto;
+});
 
-</script>
+if (producto) {
 
+    document.getElementById("nombre").textContent =
+        producto.nombre;
+
+    document.getElementById("precio").textContent =
+        "Precio: $" + producto.precio;
+
+} else {
+
+    document.getElementById("nombre").textContent =
+        "Producto no encontrado";
+
+    document.getElementById("precio").textContent =
+        "";
+}
+
+        </script>
 
 </body>
 
