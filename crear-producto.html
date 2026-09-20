@@ -183,11 +183,13 @@ formulario.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const producto = {
-        nombre: document.getElementById("nombre").value,
-        descripcion: document.getElementById("descripcion").value,
-        precio: document.getElementById("precio").value,
-        enlace: document.getElementById("enlace").value
-    };
+    nombre: document.getElementById("nombre").value,
+    descripcion: document.getElementById("descripcion").value,
+    paraQueSirve: document.getElementById("paraQueSirve").value,
+    incluye: document.getElementById("incluye").value,
+    precio: document.getElementById("precio").value,
+    enlace: document.getElementById("enlace").value
+};
 
     let productos = [];
 
