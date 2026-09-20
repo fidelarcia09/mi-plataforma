@@ -176,7 +176,13 @@ formulario.addEventListener("submit", function(event) {
         enlace: document.getElementById("enlace").value
     };
 
-    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+    let productos = [];
+
+    try {
+        productos = JSON.parse(localStorage.getItem("productos") || "[]");
+    } catch (error) {
+        productos = [];
+    }
 
     productos.push(producto);
 
