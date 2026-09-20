@@ -82,13 +82,12 @@
             </a>
         </div>
 
-        <div class="tarjeta">
-            <h2>Aún no tienes productos</h2>
+        <div class="tarjeta" id="lista-productos">
+    <h2>Aún no tienes productos</h2>
 
-            <p>
-                Cuando publiques tu primer producto,
-                aparecerá aquí para que puedas administrarlo.
-            </p>
+    <p>
+        Cuando publiques tu primer producto, aparecerá aquí para que puedas administrarlo.
+    </p>
         </div>
 
         <a class="boton" href="panel.html">
@@ -100,7 +99,31 @@
         </a>
 
     </div>
+<script>
+const lista = document.getElementById("lista-productos");
 
+const productos = JSON.parse(localStorage.getItem("productos") || "[]");
+
+if (productos.length > 0) {
+    lista.innerHTML = "";
+
+    productos.forEach(function(producto) {
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "tarjeta";
+
+        tarjeta.innerHTML = `
+            <h2>${producto.nombre}</h2>
+            <p>${producto.descripcion}</p>
+            <p><strong>Precio:</strong> $${producto.precio}</p>
+            <a href="${producto.enlace}" target="_blank" class="boton">
+                Ver producto 🚀
+            </a>
+        `;
+
+        lista.appendChild(tarjeta);
+    });
+}
+</script>
 </body>
 
 </html>
