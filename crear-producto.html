@@ -163,7 +163,29 @@
                 </button>
 
             </form>
+            <script>
+const formulario = document.querySelector("form");
 
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const producto = {
+        nombre: document.getElementById("nombre").value,
+        descripcion: document.getElementById("descripcion").value,
+        precio: document.getElementById("precio").value,
+        enlace: document.getElementById("enlace").value
+    };
+
+    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+    productos.push(producto);
+
+    localStorage.setItem("productos", JSON.stringify(productos));
+
+    window.location.href = "productos.html";
+});
+            </script>
+            
             <a href="productos.html" class="volver">
                 ← Volver a mis productos
             </a>
