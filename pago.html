@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pago</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f5ff;
+            color: #172033;
+        }
+
+        .contenedor {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 22px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4f46e5;
+        }
+
+        .producto {
+            background: #f4f5ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .precio {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .boton {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nota {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .volver {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="tarjeta">
+
+        <h1>💳 Pago</h1>
+
+        <div class="producto">
+
+            <h2 id="nombre">Cargando producto...</h2>
+
+            <div class="precio" id="precio"></div>
+
+        </div>
+
+        <button class="boton" onclick="procesarPago()">
+            Confirmar compra 💳
+        </button>
+
+        <p class="nota">
+            El sistema de pago real se conectará posteriormente.
+        </p>
+
+        <a href="productos.html" class="volver">
+            ← Volver a productos
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+const datos = new URLSearchParams(window.location.search);
+
+const nombreProducto = datos.get("producto");
+const precioProducto = datos.get("precio");
+
+document.getElementById("nombre").textContent =
+    nombreProducto || "Producto";
+
+document.getElementById("precio").textContent =
+    precioProducto ? "Precio: $" + precioProducto : "";
+
+function procesarPago() {
+
+    alert("El sistema de pago todavía está en construcción 🚧");
+
+}
+
+</script>
+
+</body>
+
+</html>
