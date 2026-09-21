@@ -2,75 +2,75 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
-<title>Comprar producto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Comprar producto</title>
 
-body {
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f5ff;
-    color:#172033;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f5ff;
+            color: #172033;
+        }
 
-.contenedor {
-    max-width:600px;
-    margin:40px auto;
-    padding:20px;
-}
+        .contenedor {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
 
-.tarjeta {
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 5px 20px #ddd;
-    text-align:center;
-}
+        .tarjeta {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #ddd;
+            text-align: center;
+        }
 
-h1 {
-    color:#4f46e5;
-}
+        h1 {
+            color: #4f46e5;
+        }
 
-.boton {
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#4f46e5;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-</style>
-
+        .boton {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="contenedor">
 
-<div class="tarjeta">
+    <div class="tarjeta">
 
-<h1>🛒 Comprar producto</h1>
+        <h1>🛒 Comprar producto</h1>
 
-<h2 id="nombre"></h2>
+        <h2 id="nombre"></h2>
 
-<p id="precio"></p>
+        <p id="precio"></p>
 
-<a id="continuarCompra" href="#" class="boton">
-    Continuar compra
-</a>
+        <a id="continuarCompra" class="boton">
+            Continuar compra
+        </a>
+
+    </div>
 
 </div>
-
-</div>
-
 
 <script>
 
 const datos = new URLSearchParams(window.location.search);
+
 const nombreProducto = datos.get("producto");
+const precioURL = datos.get("precio");
 
 const productos = JSON.parse(
     localStorage.getItem("productos") || "[]"
@@ -88,30 +88,23 @@ if (producto) {
     document.getElementById("precio").textContent =
         "Precio: $" + producto.precio;
 
+    document.getElementById("continuarCompra").href =
+        "confirmacion-compra.html?producto=" +
+        encodeURIComponent(producto.nombre) +
+        "&precio=" +
+        encodeURIComponent(producto.precio);
+
 } else {
 
     document.getElementById("nombre").textContent =
         "Producto no encontrado";
 
-    document.getElementById("precio").textContent =
-        "";
+    document.getElementById("precio").textContent = "";
+
 }
 
-        </script>
-    
-<script>
-const datosParaCompra = new URLSearchParams(window.location.search);
-
-const nombreParaCompra = datosParaCompra.get("producto");
-const precioParaCompra = datosParaCompra.get("precio");
-
-document.getElementById("continuarCompra").href =
-    "confirmacion-compra.html?producto=" +
-    encodeURIComponent(nombreParaCompra || "") +
-    "&precio=" +
-    encodeURIComponent(precioParaCompra || "");
 </script>
-        
+
 </body>
-    
+
 </html>
