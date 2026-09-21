@@ -68,7 +68,7 @@
 
         <p>Próximamente podrás realizar el pago directamente desde nuestra plataforma.</p>
 
-        <a id="irPago" class="boton">
+        <a id="irPago" href="#" class="boton">
     Continuar al pago 💳
         </a>
 
@@ -91,6 +91,19 @@ document.getElementById("irPago").href =
     "&precio=" +
     encodeURIComponent(precio);
 </script>
+    
+ <script>
+const datosCompra = new URLSearchParams(window.location.search);
+
+const producto = datosCompra.get("producto");
+const precio = datosCompra.get("precio");
+
+document.getElementById("irPago").href =
+    "pago.html?producto=" +
+    encodeURIComponent(producto || "") +
+    "&precio=" +
+    encodeURIComponent(precio || "");
+ </script>
     
 </body>
 
