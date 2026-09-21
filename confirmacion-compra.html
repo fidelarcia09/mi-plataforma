@@ -79,18 +79,6 @@
     </div>
 
 </div>
-<script>
-const datosCompra = new URLSearchParams(window.location.search);
-
-const producto = datosCompra.get("producto");
-const precio = datosCompra.get("precio");
-
-document.getElementById("irPago").href =
-    "pago.html?producto=" +
-    encodeURIComponent(producto) +
-    "&precio=" +
-    encodeURIComponent(precio);
-</script>
     
  <script>
 const datosCompra = new URLSearchParams(window.location.search);
