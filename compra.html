@@ -58,7 +58,7 @@ h1 {
 
 <p id="precio"></p>
 
-<a href="confirmacion-compra.html" class="boton">
+<a id="continuarCompra" href="#" class="boton">
     Continuar compra
 </a>
 
@@ -100,16 +100,16 @@ if (producto) {
         </script>
     
 <script>
-const datosCompra2 = new URLSearchParams(window.location.search);
+const datosParaCompra = new URLSearchParams(window.location.search);
 
-const productoCompra = datosCompra2.get("producto");
-const precioCompra = datosCompra2.get("precio");
+const nombreParaCompra = datosParaCompra.get("producto");
+const precioParaCompra = datosParaCompra.get("precio");
 
 document.getElementById("continuarCompra").href =
     "confirmacion-compra.html?producto=" +
-    encodeURIComponent(productoCompra || "") +
+    encodeURIComponent(nombreParaCompra || "") +
     "&precio=" +
-    encodeURIComponent(precioCompra || "");
+    encodeURIComponent(precioParaCompra || "");
 </script>
         
 </body>
