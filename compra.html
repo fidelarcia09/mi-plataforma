@@ -98,17 +98,18 @@ if (producto) {
 }
 
         </script>
+    
 <script>
-const datosCompra = new URLSearchParams(window.location.search);
+const datosCompra2 = new URLSearchParams(window.location.search);
 
-const producto = datosCompra.get("producto");
-const precio = datosCompra.get("precio");
+const productoCompra = datosCompra2.get("producto");
+const precioCompra = datosCompra2.get("precio");
 
 document.getElementById("continuarCompra").href =
     "confirmacion-compra.html?producto=" +
-    encodeURIComponent(producto) +
+    encodeURIComponent(productoCompra || "") +
     "&precio=" +
-    encodeURIComponent(precio);
+    encodeURIComponent(precioCompra || "");
 </script>
         
 </body>
